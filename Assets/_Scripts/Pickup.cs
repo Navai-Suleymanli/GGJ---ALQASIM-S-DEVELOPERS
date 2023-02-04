@@ -11,16 +11,11 @@ public class Pickup : MonoBehaviour
    
 
 
-
-
     private void Start()
     {
 
     }
 
-
-
-    
 
     private void Update()
     {
@@ -45,8 +40,5 @@ public class Pickup : MonoBehaviour
             Instantiate(tree, collider2.transform.position, collider2.transform.rotation);
         }
     }
-
-
-
 
 }
