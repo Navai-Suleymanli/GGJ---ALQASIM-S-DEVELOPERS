@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 namespace TarodevController {
@@ -17,6 +18,8 @@ namespace TarodevController {
         public bool JumpingThisFrame { get; private set; }
         public bool LandingThisFrame { get; private set; }
         public Vector3 RawMovement { get; private set; }
+        [SerializeField] public bool _iswallDetect;
+        [SerializeField] public GameObject _wallDetector;
         public bool Grounded => _colDown;
 
         private Vector3 _lastPosition;
@@ -26,7 +29,11 @@ namespace TarodevController {
         private bool _active;
         void Awake() => Invoke(nameof(Activate), 0.5f);
         void Activate() =>  _active = true;
-        
+
+        public void Start()
+        {
+           
+        }
         private void Update() {
             if(!_active) return;
             // Calculate velocity
@@ -42,6 +49,7 @@ namespace TarodevController {
             CalculateJump(); // Possibly overrides vertical
 
             MoveCharacter(); // Actually perform the axis movement
+            WallSlide();
         }
 
 
@@ -209,6 +217,7 @@ namespace TarodevController {
         [SerializeField] private float _coyoteTimeThreshold = 0.1f;
         [SerializeField] private float _jumpBuffer = 0.1f;
         [SerializeField] private float _jumpEndEarlyGravityModifier = 3;
+        private int _jumpCount= 0;
         private bool _coyoteUsable;
         private bool _endedJumpEarly = true;
         private float _apexPoint; // Becomes 1 at the apex of a jump
@@ -221,25 +230,35 @@ namespace TarodevController {
                 // Gets stronger the closer to the top of the jump
                 _apexPoint = Mathf.InverseLerp(_jumpApexThreshold, 0, Mathf.Abs(Velocity.y));
                 _fallSpeed = Mathf.Lerp(_minFallSpeed, _maxFallSpeed, _apexPoint);
+                
             }
             else {
                 _apexPoint = 0;
             }
         }
 
-        private void CalculateJump() {
+        private void CalculateJump()
+        {
+          
+
             // Jump if: grounded or within coyote threshold || sufficient jump buffer
-            if (Input.JumpDown && CanUseCoyote || HasBufferedJump) {
+            if (Input.JumpDown  && _jumpCount <= 0  || HasBufferedJump) {
+                _jumpCount++;
                 _currentVerticalSpeed = _jumpHeight;
                 _endedJumpEarly = false;
                 _coyoteUsable = false;
                 _timeLeftGrounded = float.MinValue;
-                JumpingThisFrame = true;
+                JumpingThisFrame = true ;
             }
             else {
+               
                 JumpingThisFrame = false;
             }
+            if (_colDown || CanUseCoyote)
+            {
+                _jumpCount = 0;
 
+            }
             // End the jump early if button released
             if (!_colDown && Input.JumpUp && !_endedJumpEarly && Velocity.y > 0) {
                 // _currentVerticalSpeed = 0;
@@ -297,5 +316,13 @@ namespace TarodevController {
         }
 
         #endregion
+
+
+
+        private void WallSlide()
+        {
+
+
+        }
     }
 }
