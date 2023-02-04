@@ -444,11 +444,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42303504a4fc90a43bc5178df9876bf2, type: 3}
+--- !u!1 &1325294257 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6432609860406773169, guid: 42303504a4fc90a43bc5178df9876bf2, type: 3}
+  m_PrefabInstance: {fileID: 884837009}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1325294259 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6432609860406773170, guid: 42303504a4fc90a43bc5178df9876bf2, type: 3}
   m_PrefabInstance: {fileID: 884837009}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1325294263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325294257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89936e25435b40a4698d556ffc5249c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isJumping: 0
 --- !u!1 &1359219670
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,7 +650,7 @@ GameObject:
   - component: {fileID: 1765859271}
   - component: {fileID: 1765859270}
   - component: {fileID: 1765859269}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Grabbable
   m_Icon: {fileID: 0}
