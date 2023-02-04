@@ -37,7 +37,7 @@ public class PushController : MonoBehaviour
                 side = Vector2.left;
             }
 
-            rb2D.AddForce(side * thrust, ForceMode2D.Impulse);
+            rb2D.AddForce(side * thrust);
         }
     }
     #endregion
