@@ -9,12 +9,22 @@ public class PushController : MonoBehaviour
     [SerializeField] private float thrust = 1f;
     
     private GameObject boxObject;
-
+    private int dir = 0;
     #region Unity Methods
     private void Update()
-    {    
+    {
+        float hz = Input.GetAxis("Horizontal");
+        if(hz>0)
+        {
+            dir = 1;
+        }
+        if (hz < 0)
+        {
+            dir = -1;
+        }
+
         Physics2D.queriesStartInColliders = false;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, distance, boxMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * dir, distance, boxMask);
 
         if (hit.collider != null && hit.collider.CompareTag("Pushable") && Input.GetKey(KeyCode.Q))
         {            
@@ -22,7 +32,6 @@ public class PushController : MonoBehaviour
 
             Rigidbody2D rb2D = boxObject.GetComponent<Rigidbody2D>();
             Vector2 side=Vector2.zero;
-            
 
             float playerX = transform.position.x;
             float objectX = boxObject.transform.position.x;
