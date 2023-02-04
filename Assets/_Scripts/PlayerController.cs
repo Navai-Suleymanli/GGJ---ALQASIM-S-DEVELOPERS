@@ -209,6 +209,7 @@ namespace TarodevController {
         [SerializeField] private float _coyoteTimeThreshold = 0.1f;
         [SerializeField] private float _jumpBuffer = 0.1f;
         [SerializeField] private float _jumpEndEarlyGravityModifier = 3;
+        private int _jumpcount;
         private bool _coyoteUsable;
         private bool _endedJumpEarly = true;
         private float _apexPoint; // Becomes 1 at the apex of a jump
@@ -229,15 +230,23 @@ namespace TarodevController {
 
         private void CalculateJump() {
             // Jump if: grounded or within coyote threshold || sufficient jump buffer
-            if (Input.JumpDown && CanUseCoyote || HasBufferedJump) {
+            if (Input.JumpDown && _jumpcount <= 0 || HasBufferedJump) {
+              
+                _jumpcount++;
                 _currentVerticalSpeed = _jumpHeight;
                 _endedJumpEarly = false;
                 _coyoteUsable = false;
                 _timeLeftGrounded = float.MinValue;
                 JumpingThisFrame = true;
+                Debug.Log(_jumpcount);
             }
             else {
                 JumpingThisFrame = false;
+            }
+            if (_colDown )
+            {
+                _jumpcount = 0;
+                Debug.Log(_jumpcount);
             }
 
             // End the jump early if button released
