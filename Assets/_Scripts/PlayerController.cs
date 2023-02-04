@@ -19,6 +19,7 @@ namespace TarodevController {
         public Vector3 RawMovement { get; private set; }
         public bool Grounded => _colDown;
 
+
         private Vector3 _lastPosition;
         private float _currentHorizontalSpeed, _currentVerticalSpeed;
 
@@ -269,6 +270,7 @@ namespace TarodevController {
 
         // We cast our bounds before moving to avoid future collisions
         private void MoveCharacter() {
+            
             var pos = transform.position;
             RawMovement = new Vector3(_currentHorizontalSpeed, _currentVerticalSpeed); // Used externally
             var move = RawMovement * Time.deltaTime;
@@ -280,7 +282,6 @@ namespace TarodevController {
                 transform.position += move;
                 return;
             }
-
             // otherwise increment away from current pos; see what closest position we can move to
             var positionToMoveTo = transform.position;
             for (int i = 1; i < _freeColliderIterations; i++) {
