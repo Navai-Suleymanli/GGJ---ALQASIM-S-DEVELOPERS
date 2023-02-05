@@ -16,11 +16,13 @@ namespace TarodevController {
         [SerializeField] private AudioClip[] _footsteps;
         [SerializeField] private float _maxTilt = .1f;
         [SerializeField] private float _tiltSpeed = 1;
-        [SerializeField, Range(1f, 3f)] private float _maxIdleSpeed = 2;
+       // [SerializeField, Range(1f, 3f)] private float _maxIdleSpeed = 2;
         [SerializeField] private float _maxParticleFallSpeed = -40;
-        [SerializeField] private GameObject _playerRef;
-        //private Vector3 pos;
-        //private Vector3 _velocity;
+        [SerializeField] private Rigidbody2D _playerRef;
+        [SerializeField] private float _moveSpeed;
+        [SerializeField] private float _dirX;
+
+
 
 
 
@@ -30,9 +32,12 @@ namespace TarodevController {
         private Vector2 _movement;
 
         void Awake() => _player = GetComponentInParent<IPlayerController>();
-       
-
-        void Update() {
+       void Start()
+        {
+            Rigidbody2D _rig = _playerRef.GetComponent<Rigidbody2D>();
+            _moveSpeed = 5f;
+        }
+         void Update() {
             if (_player == null) return;
 
             // Flip the sprite
@@ -43,32 +48,29 @@ namespace TarodevController {
             _anim.transform.rotation = Quaternion.RotateTowards(_anim.transform.rotation, Quaternion.Euler(targetRotVector), _tiltSpeed * Time.deltaTime);
 
             // Speed up idle while running
-            _anim.SetFloat(IdleSpeedKey, Mathf.Lerp(1, _maxIdleSpeed, Mathf.Abs(_player.Input.X)));
-           
-            //if (Input.GetKeyUp(KeyCode.A)|| Input.GetKeyUp(KeyCode.D))
-            //{
-                
-            //    _anim.SetFloat(IdleSpeedKey, 0);
-            //}
+            //_anim.SetFloat(IdleSpeedKey, Mathf.Lerp(1, _maxIdleSpeed, Mathf.Abs(_player.Input.X)));
 
+            _dirX = Input.GetAxis("Horizontal") * _moveSpeed;
+            if (Mathf.Abs(_dirX) > 0 && _playerRef.velocity.y == 0)
+            {
+                _anim.SetBool("isRunnig", true);
 
-            //_velocity = (_playerRef.transform.position - pos) / Time.deltaTime;
-           
-            //pos = transform.position;
-            //_anim.SetFloat(IdleSpeedKey,_velocity.magnitude);
-            //Debug.Log(IdleSpeedKey);
+            }
+            else
+            {
+                _anim.SetBool("isRunnig", false);
+            }
+            if ( _playerRef.velocity.y > 0)
+            {
+                _anim.SetBool("Jump", true);
 
-            //if (Input.GetKeyDown(KeyCode.D)|| Input.GetKeyDown(KeyCode.A))
-            //{
-            //    _anim.Play("RunningPlayer");
-            //    Debug.Log("Runing");
-            //}
-            //else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A))
-            //{
-            //    _anim.Play("IdlePlayer");
-            //    Debug.Log("Idle");
-            //}
+            }
+            if (_playerRef.velocity.y < 0)
+            {
+                _anim.SetBool("Jump", false);
+                _anim.SetBool("Grounded", true);
 
+            }
 
 
             // Splat
@@ -136,6 +138,7 @@ namespace TarodevController {
         #region Animation Keys
 
         private static readonly int GroundedKey = Animator.StringToHash("Grounded");
+        private static readonly int _isRunning = Animator.StringToHash("isRunnig");
         private static readonly int IdleSpeedKey = Animator.StringToHash("IdleSpeed");
         private static readonly int JumpKey = Animator.StringToHash("Jump");
 
