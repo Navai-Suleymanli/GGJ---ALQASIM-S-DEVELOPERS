@@ -239,7 +239,7 @@ namespace TarodevController {
                 _coyoteUsable = false;
                 _timeLeftGrounded = float.MinValue;
                 JumpingThisFrame = true;
-                Debug.Log(_jumpcount);
+                
             }
             else {
                 JumpingThisFrame = false;
@@ -247,7 +247,7 @@ namespace TarodevController {
             if (_colDown )
             {
                 _jumpcount = 0;
-                Debug.Log(_jumpcount);
+               
             }
 
             // End the jump early if button released

@@ -250,6 +250,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Son Hal
       objectReference: {fileID: 0}
+    - target: {fileID: 7804341283697566892, guid: 7e1f86430685f4348b7ec8f5609b4377, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804341283697566892, guid: 7e1f86430685f4348b7ec8f5609b4377, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8f0add7371f376741b3ec3bd3c94024c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e1f86430685f4348b7ec8f5609b4377, type: 3}
 --- !u!1001 &491233330

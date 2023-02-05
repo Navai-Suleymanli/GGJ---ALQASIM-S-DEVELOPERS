@@ -39,6 +39,19 @@ namespace TarodevController {
             // Speed up idle while running
             _anim.SetFloat(IdleSpeedKey, Mathf.Lerp(1, _maxIdleSpeed, Mathf.Abs(_player.Input.X)));
 
+            //if (Input.GetKeyDown(KeyCode.D)|| Input.GetKeyDown(KeyCode.A))
+            //{
+            //    _anim.Play("RunningPlayer");
+            //    Debug.Log("Runing");
+            //}
+            //else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A))
+            //{
+            //    _anim.Play("IdlePlayer");
+            //    Debug.Log("Idle");
+            //}
+            
+
+
             // Splat
             if (_player.LandingThisFrame) {
                 _anim.SetTrigger(GroundedKey);
@@ -49,12 +62,16 @@ namespace TarodevController {
             if (_player.JumpingThisFrame) {
                 _anim.SetTrigger(JumpKey);
                 _anim.ResetTrigger(GroundedKey);
+               
+                
 
                 // Only play particles when grounded (avoid coyote)
                 if (_player.Grounded) {
                     SetColor(_jumpParticles);
                     SetColor(_launchParticles);
                     _jumpParticles.Play();
+                    //_anim.Play("jumpAnim");
+                    //Debug.Log("Jump");
                 }
             }
 
@@ -65,6 +82,8 @@ namespace TarodevController {
                 _landParticles.transform.localScale = Vector3.one * Mathf.InverseLerp(0, _maxParticleFallSpeed, _movement.y);
                 SetColor(_landParticles);
                 _landParticles.Play();
+                //_anim.Play("IdlePlayer");
+                //Debug.Log("Idle");
             }
             else if (_playerGrounded && !_player.Grounded) {
                 _playerGrounded = false;
