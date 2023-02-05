@@ -91,8 +91,7 @@ namespace TarodevController {
             {   
 
                 
-                    _audioManager.JumpingSound();
-                    Debug.Log("JumpingSound");
+                    
                 
                 
                 _anim.SetBool("isJumped", true);
