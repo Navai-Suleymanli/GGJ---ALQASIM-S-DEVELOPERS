@@ -10,7 +10,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource _jumpingSound;
     [SerializeField] private AudioSource _pickUpSound;
     [SerializeField] private AudioSource _deathSound;
-    [SerializeField] private PlayerAnimator _playSound;
+    [SerializeField] private PlayerAnimator _animator;
     private void Update()
     {
         Move();
