@@ -21,20 +21,19 @@ public class AudioManager : MonoBehaviour
         _ambianceSond.Play();
        
     }
-    private void Update()
-    {
-      
-     
-        Move();
+    private void RunningSound() {
+        _runningSound.Play(); 
     }
-
-    private void Move() {
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)){
-           
-        }
-        else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
-            {
-           
-        }
+    private void JumpingSound()
+    {
+        _jumpingSound.Play();
+    }
+    private void PickUpSound()
+    {
+        _pickUpSound.Play();
+    }
+    private void DeathSound()
+    {
+        _deathSound.Play();
     }
 }
