@@ -2,13 +2,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class Pickup : MonoBehaviour
 {
     public bool hasComponent;
     public TextMeshProUGUI compCount;
     public int collectedCompoinentCount = 0;
     public GameObject tree;
-   
+    [SerializeField] GameObject _waterDrop1;
+    [SerializeField] GameObject _waterDrop2;
+    [SerializeField] GameObject _waterDrop3;
+
 
 
     private void Start()
@@ -28,6 +32,27 @@ public class Pickup : MonoBehaviour
             Destroy(collider.gameObject);
 
             collectedCompoinentCount++;
+            Debug.Log(collectedCompoinentCount);
+            if (collectedCompoinentCount == 1)
+            {
+                _waterDrop1.SetActive(true);
+            }
+
+            if (collectedCompoinentCount == 2)
+            {
+
+                _waterDrop2.SetActive(true);
+            }
+
+            if (collectedCompoinentCount == 3)
+            {
+                 _waterDrop3.SetActive(true);
+            }
+            
+            
+           
+           
+           
 
             // UpdateScore(collectedCompoinentCount);
         }
