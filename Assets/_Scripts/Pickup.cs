@@ -6,7 +6,7 @@ using TMPro;
 public class Pickup : MonoBehaviour
 {
     public bool hasComponent;
-    public TextMeshProUGUI compCount;
+   
     public int collectedCompoinentCount = 0;
     public GameObject tree;
     [SerializeField] GameObject _waterDrop1;
@@ -25,7 +25,7 @@ public class Pickup : MonoBehaviour
     {
         Collider2D collider = Physics2D.OverlapCircle(transform.position, 0.5f, LayerMask.GetMask("WaterComponent"));
 
-        compCount.text = "Components Collected " + collectedCompoinentCount;
+        
 
         if (collider != null)
         {
