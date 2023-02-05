@@ -8,11 +8,23 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private AudioSource _runningSound;
     [SerializeField] private AudioSource _jumpingSound;
+    [SerializeField] private AudioSource _backSound;
+    [SerializeField] private AudioSource _ambianceSond;
     [SerializeField] private AudioSource _pickUpSound;
     [SerializeField] private AudioSource _deathSound;
-    [SerializeField] private PlayerAnimator _animator;
+    
+    
+
+    private void Start()
+    {
+        _backSound.Play();
+        _ambianceSond.Play();
+       
+    }
     private void Update()
     {
+      
+     
         Move();
     }
 
