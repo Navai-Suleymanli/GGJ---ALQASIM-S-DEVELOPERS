@@ -10,6 +10,8 @@ public class Grab : MonoBehaviour
     private GameObject grabbedObject;
     private float grabbedObjectSize;
 
+
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
