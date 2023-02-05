@@ -13,6 +13,6 @@ public class GameManager : MonoBehaviour
     }
     public void StartLevel()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("Level1 1");
     }
 }
