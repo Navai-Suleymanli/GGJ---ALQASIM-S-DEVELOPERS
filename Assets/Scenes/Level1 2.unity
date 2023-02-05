@@ -423,7 +423,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &293162325
 RectTransform:
@@ -456,9 +456,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 293162321}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82d8e2c1ca951c64b9d0033652c486fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 007aa712af841ea4cb9c6f237c09cd42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseGameobject: {fileID: 1576622611}
+  Player: {fileID: 1532975784}
 --- !u!1001 &341918213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1001,10 +1003,10 @@ RectTransform:
   m_Father: {fileID: 629136889}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 320, y: -320}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &725460504
 MonoBehaviour:
@@ -1049,7 +1051,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 725460505}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 293162326}
+        m_TargetAssemblyTypeName: PauseController, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &725460505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1198,10 +1212,10 @@ RectTransform:
   m_Father: {fileID: 629136889}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 320, y: -420}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &829748698
 MonoBehaviour:
@@ -1246,7 +1260,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 829748699}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 293162326}
+        m_TargetAssemblyTypeName: PauseController, Assembly-CSharp
+        m_MethodName: CloseGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &829748699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1365,7 +1391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &867378875
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2119,6 +2145,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1532975784 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3822341786621090710, guid: 7e1f86430685f4348b7ec8f5609b4377, type: 3}
+  m_PrefabInstance: {fileID: 341918213}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1576622611
 GameObject:
   m_ObjectHideFlags: 0
@@ -2137,7 +2168,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1576622612
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2482,10 +2513,10 @@ RectTransform:
   m_Father: {fileID: 629136889}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 320, y: -220}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2078345994
 MonoBehaviour:
@@ -2530,7 +2561,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2078345995}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 293162326}
+        m_TargetAssemblyTypeName: PauseController, Assembly-CSharp
+        m_MethodName: ClosePauseWindow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2078345995
 MonoBehaviour:
   m_ObjectHideFlags: 0
