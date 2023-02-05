@@ -59,7 +59,7 @@ public class Pickup : MonoBehaviour
 
         Collider2D collider2 = Physics2D.OverlapCircle(transform.position, 0.5f, LayerMask.GetMask("Tree"));      
         
-        if (collider2 != null && Input.GetKeyDown(KeyCode.E))
+        if (collider2 != null && Input.GetKeyDown(KeyCode.E) && collectedCompoinentCount == 3)
         {
             Destroy(collider2.gameObject);
             Instantiate(tree, collider2.transform.position, collider2.transform.rotation);
