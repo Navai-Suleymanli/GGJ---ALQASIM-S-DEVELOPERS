@@ -16,11 +16,11 @@ namespace TarodevController {
         [SerializeField] private AudioClip[] _footsteps;
         [SerializeField] private float _maxTilt = .1f;
         [SerializeField] private float _tiltSpeed = 1;
-        [SerializeField, Range(1f, 3f)] private float _maxIdleSpeed = 2;
+
         [SerializeField] private float _maxParticleFallSpeed = -40;
-        [SerializeField] private GameObject _playerRef;
-        //private Vector3 pos;
-        //private Vector3 _velocity;
+        [SerializeField] private Rigidbody2D _playerRef;
+        [SerializeField] private float _moveSpeed;
+        [SerializeField] private float _dirX;
 
 
 
@@ -31,7 +31,11 @@ namespace TarodevController {
 
         void Awake() => _player = GetComponentInParent<IPlayerController>();
        
-
+         void Start()
+        {
+            Rigidbody2D _rig = _playerRef.GetComponent<Rigidbody2D>();
+            _moveSpeed = 5f;
+        }
         void Update() {
             if (_player == null) return;
 
@@ -43,17 +47,17 @@ namespace TarodevController {
             _anim.transform.rotation = Quaternion.RotateTowards(_anim.transform.rotation, Quaternion.Euler(targetRotVector), _tiltSpeed * Time.deltaTime);
 
             // Speed up idle while running
-            _anim.SetFloat(IdleSpeedKey, Mathf.Lerp(1, _maxIdleSpeed, Mathf.Abs(_player.Input.X)));
-           
+            //_anim.SetFloat(IdleSpeedKey, Mathf.Lerp(1, _maxIdleSpeed, Mathf.Abs(_player.Input.X)));
+
             //if (Input.GetKeyUp(KeyCode.A)|| Input.GetKeyUp(KeyCode.D))
             //{
-                
+
             //    _anim.SetFloat(IdleSpeedKey, 0);
             //}
 
 
             //_velocity = (_playerRef.transform.position - pos) / Time.deltaTime;
-           
+
             //pos = transform.position;
             //_anim.SetFloat(IdleSpeedKey,_velocity.magnitude);
             //Debug.Log(IdleSpeedKey);
@@ -69,7 +73,27 @@ namespace TarodevController {
             //    Debug.Log("Idle");
             //}
 
+            _dirX = Input.GetAxis("Horizontal") * _moveSpeed;
+            if (Mathf.Abs(_dirX) > 0 && _playerRef.velocity.y == 0)
+            {
+                _anim.SetBool("isRunning", true);
 
+            }
+            else
+            {
+                _anim.SetBool("isRunning", false);
+            }
+            if (Input.GetAxis("Jump") == 1)
+            {
+                _anim.SetBool("isJumped", true);
+
+            }
+             else if (Input.GetAxis("Jump") == 0)
+            {
+                _anim.SetBool("isJumped", false);
+                _anim.SetBool("Grounded", true);
+
+            }
 
             // Splat
             if (_player.LandingThisFrame) {

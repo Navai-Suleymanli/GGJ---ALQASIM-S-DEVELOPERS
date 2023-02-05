@@ -94,9 +94,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1876767bf7cbf284394dc3817af9593c, type: 3}
   _maxTilt: 5
   _tiltSpeed: 30
-  _maxIdleSpeed: 2
   _maxParticleFallSpeed: -40
-  _playerRef: {fileID: 6088551288507783513}
+  _playerRef: {fileID: 8659538707760302302}
+  _moveSpeed: 0
+  _dirX: 0
 --- !u!82 &7804341284014292647
 AudioSource:
   m_ObjectHideFlags: 0
