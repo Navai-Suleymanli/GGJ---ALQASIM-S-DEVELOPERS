@@ -86,19 +86,21 @@ namespace TarodevController {
             if (Input.GetAxis("Jump") == 1)
             {
                 _anim.SetBool("isJumped", true);
+                _anim.SetBool("isGrounded", false);
 
             }
              else if (Input.GetAxis("Jump") == 0)
             {
                 _anim.SetBool("isJumped", false);
-                _anim.SetBool("Grounded", true);
+               
 
             }
 
             // Splat
             if (_player.LandingThisFrame) {
                 _anim.SetTrigger(GroundedKey);
-               // _source.PlayOneShot(_footsteps[Random.Range(0, _footsteps.Length)]);
+                _anim.SetBool("isGrounded", true);
+                // _source.PlayOneShot(_footsteps[Random.Range(0, _footsteps.Length)]);
             }
             
             // Jump effects
