@@ -18,6 +18,11 @@ namespace TarodevController {
         [SerializeField] private float _tiltSpeed = 1;
         [SerializeField, Range(1f, 3f)] private float _maxIdleSpeed = 2;
         [SerializeField] private float _maxParticleFallSpeed = -40;
+        [SerializeField] private GameObject _playerRef;
+        //private Vector3 pos;
+        //private Vector3 _velocity;
+
+
 
         private IPlayerController _player;
         private bool _playerGrounded;
@@ -25,6 +30,7 @@ namespace TarodevController {
         private Vector2 _movement;
 
         void Awake() => _player = GetComponentInParent<IPlayerController>();
+       
 
         void Update() {
             if (_player == null) return;
@@ -38,6 +44,19 @@ namespace TarodevController {
 
             // Speed up idle while running
             _anim.SetFloat(IdleSpeedKey, Mathf.Lerp(1, _maxIdleSpeed, Mathf.Abs(_player.Input.X)));
+           
+            //if (Input.GetKeyUp(KeyCode.A)|| Input.GetKeyUp(KeyCode.D))
+            //{
+                
+            //    _anim.SetFloat(IdleSpeedKey, 0);
+            //}
+
+
+            //_velocity = (_playerRef.transform.position - pos) / Time.deltaTime;
+           
+            //pos = transform.position;
+            //_anim.SetFloat(IdleSpeedKey,_velocity.magnitude);
+            //Debug.Log(IdleSpeedKey);
 
             //if (Input.GetKeyDown(KeyCode.D)|| Input.GetKeyDown(KeyCode.A))
             //{
@@ -49,21 +68,22 @@ namespace TarodevController {
             //    _anim.Play("IdlePlayer");
             //    Debug.Log("Idle");
             //}
-            
+
 
 
             // Splat
             if (_player.LandingThisFrame) {
                 _anim.SetTrigger(GroundedKey);
-                _source.PlayOneShot(_footsteps[Random.Range(0, _footsteps.Length)]);
+               // _source.PlayOneShot(_footsteps[Random.Range(0, _footsteps.Length)]);
             }
-
+            
             // Jump effects
             if (_player.JumpingThisFrame) {
                 _anim.SetTrigger(JumpKey);
                 _anim.ResetTrigger(GroundedKey);
-               
-                
+
+
+
 
                 // Only play particles when grounded (avoid coyote)
                 if (_player.Grounded) {
