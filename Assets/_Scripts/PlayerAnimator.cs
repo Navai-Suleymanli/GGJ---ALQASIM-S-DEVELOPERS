@@ -16,7 +16,7 @@ namespace TarodevController {
         [SerializeField] private AudioClip[] _footsteps;
         [SerializeField] private float _maxTilt = .1f;
         [SerializeField] private float _tiltSpeed = 1;
-       // [SerializeField, Range(1f, 3f)] private float _maxIdleSpeed = 2;
+      
         [SerializeField] private float _maxParticleFallSpeed = -40;
         [SerializeField] private Rigidbody2D _playerRef;
         [SerializeField] private float _moveSpeed;
@@ -47,8 +47,7 @@ namespace TarodevController {
             var targetRotVector = new Vector3(0, 0, Mathf.Lerp(-_maxTilt, _maxTilt, Mathf.InverseLerp(-1, 1, _player.Input.X)));
             _anim.transform.rotation = Quaternion.RotateTowards(_anim.transform.rotation, Quaternion.Euler(targetRotVector), _tiltSpeed * Time.deltaTime);
 
-            // Speed up idle while running
-            //_anim.SetFloat(IdleSpeedKey, Mathf.Lerp(1, _maxIdleSpeed, Mathf.Abs(_player.Input.X)));
+            
 
             _dirX = Input.GetAxis("Horizontal") * _moveSpeed;
             if (Mathf.Abs(_dirX) > 0 && _playerRef.velocity.y == 0)
