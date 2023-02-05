@@ -12,27 +12,27 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource _ambianceSond;
     [SerializeField] private AudioSource _pickUpSound;
     [SerializeField] private AudioSource _deathSound;
-    
-    
+
+
 
     private void Start()
     {
         _backSound.Play();
         _ambianceSond.Play();
-       
+
     }
-    private void RunningSound() {
+    public void RunningSound() {
         _runningSound.Play(); 
     }
-    private void JumpingSound()
+    public void JumpingSound()
     {
         _jumpingSound.Play();
     }
-    private void PickUpSound()
+    public void PickUpSound()
     {
         _pickUpSound.Play();
     }
-    private void DeathSound()
+    public void DeathSound()
     {
         _deathSound.Play();
     }

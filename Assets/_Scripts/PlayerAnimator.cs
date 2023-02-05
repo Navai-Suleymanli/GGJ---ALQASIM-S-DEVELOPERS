@@ -21,6 +21,8 @@ namespace TarodevController {
         [SerializeField] private Rigidbody2D _playerRef;
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _dirX;
+        [SerializeField] private GameObject _soundManager;
+        private AudioManager _audioManager;
 
 
 
@@ -35,6 +37,8 @@ namespace TarodevController {
         {
             Rigidbody2D _rig = _playerRef.GetComponent<Rigidbody2D>();
             _moveSpeed = 5f;
+            _audioManager = _soundManager.GetComponent<AudioManager>();
+            
         }
         void Update() {
             if (_player == null) return;
@@ -84,7 +88,13 @@ namespace TarodevController {
                 _anim.SetBool("isRunning", false);
             }
             if (Input.GetAxis("Jump") == 1)
-            {
+            {   
+
+                
+                    _audioManager.JumpingSound();
+                    Debug.Log("JumpingSound");
+                
+                
                 _anim.SetBool("isJumped", true);
                 _anim.SetBool("isGrounded", false);
 
